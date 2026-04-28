@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi Amor</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffebee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 320px;
+            z-index: 10;
+        }
+
+        h2 { color: #d32f2f; }
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ffcdd2;
+            border-radius: 10px;
+        }
+
+        button {
+            background-color: #ef5350;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* Sección Sorpresa */
+        #sorpresa {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #ffebee;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .tarjeta-cerrada {
+            background: #d32f2f;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        #galeria {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .foto {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+            margin: 10px;
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="login-box">
+        <h2>💖 Nuestro Inicio 💖</h2>
+        <input type="text" id="nombre" placeholder="¿Tu nombre?">
+        <input type="text" id="lugar" placeholder="¿Dónde nos vimos 1era vez?">
+        <input type="text" id="fecha" placeholder="Fecha 1era cita (DD/MM)">
+        <br><br>
+        <button onclick="validar()">Ingresar</button>
+    </div>
+
+    <div id="sorpresa">
+        <h1 id="mensaje-felicidad"></h1>
+        
+        <div class="tarjeta-cerrada" id="btn-abrir" onclick="mostrarFotos()">
+            🎁 Tienes una tarjeta escondida: ABRIR
+        </div>
+
+        <div id="galeria">
+            <p>Nuestros momentos favoritos:</p>
+            <img src="tu_foto1.jpg" alt="Nosotros" class="foto">
+            <img src="tu_foto2.jpg" alt="Nosotros" class="foto">
+        </div>
+
+        <audio id="musica" loop>
+            <source src="tu_cancion.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <script>
+        function validar() {
+            const nombre = document.getElementById('nombre').value.toLowerCase();
+            const lugar = document.getElementById('lugar').value.toLowerCase();
+            const fecha = document.getElementById('fecha').value;
+
+            // CONFIGURA AQUÍ TUS RESPUESTAS CORRECTAS
+            if(nombre !== "" && lugar.includes("parque") && fecha === "15/02") { 
+                
+                document.getElementById('login-box').style.display = 'none';
+                document.getElementById('sorpresa').style.display = 'flex';
+                document.getElementById('mensaje-felicidad').innerText = "¡FELICES 2 MESES AMORZITO! ❤️";
+                
+                // Reproducir música
+                const audio = document.getElementById('musica');
+                audio.play();
+                
+            } else {
+                alert("Mmm... intenta recordar mejor las respuestas, amor ❤️");
+            }
+        }
+
+        function mostrarFotos() {
+            document.getElementById('btn-abrir').style.display = 'none';
+            document.getElementById('galeria').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
